@@ -2,16 +2,19 @@
 
 This project develops a sophisticated API for document ingestion and retrieval-augmented question answering, leveraging advanced natural language processing techniques. It consists of two main components:
 
-## Document Ingestion System
-The ingestion module is responsible for loading, processing, and storing documents. It utilizes:
-- **SentenceTransformerEmbeddings** from the langchain library for embedding generation, specifically using the "NeuML/pubmedbert-base-embeddings" model suited for biomedical texts.
-- **DirectoryLoader** to load documents from directories with support for various file types, including PDFs.
-- **Text Splitting Functionality** to divide large documents into manageable chunks.
-- **Chroma Vector Store** for persisting document embeddings, facilitating efficient similarity searches.
+## Document Ingestion System (`ingest.py`)
+The ingestion module is responsible for loading, processing, and storing documents using the following tools:
+- **SentenceTransformerEmbeddings**: Utilizes embeddings from the `langchain` library, specifically the "NeuML/pubmedbert-base-embeddings" model for biomedical texts.
+- **DirectoryLoader**: Loads documents from directories, supporting various file types like PDFs, part of `langchain_community.document_loaders`.
+- **RecursiveCharacterTextSplitter**: Splits large documents into manageable chunks, enhancing text processing efficiency.
+- **Chroma**: A vector store for persisting and querying document embeddings for fast retrieval.
 
-## API Service
-The API service is built using FastAPI and provides:
-- **HTML Interface** for user interactions.
-- **Retrieval-Augmented Question Answering (QA) System** powered by LlamaCpp and RetrievalQA from langchain, with the model sourced from "MaziyarPanahi/BioMistral-7B-GGUF".
-- **Retrieval System** that uses the Chroma vector store to fetch relevant documents based on the embeddings.
-- **Endpoint** that accepts user queries and returns detailed, contextually accurate responses, including the source document and specific excerpts.
+## API Service (`app.py`)
+Built with FastAPI, the API service incorporates:
+- **FastAPI**: Framework for building APIs with Python 3.7+.
+- **Jinja2Templates**: Manages HTML templates for rendering user interfaces.
+- **StaticFiles**: Serves static files like CSS and JavaScript.
+- **LlamaCpp**: Executes large language models, used here in a retrieval-augmented setup.
+- **RetrievalQA**: Combines language models and retrieval systems to provide contextually accurate answers.
+- **PromptTemplate**: Structures prompts for querying language models.
+- **Hugging Face Hub (hf_hub_download)**: Downloads necessary models from the Hugging Face Hub, specifically "MaziyarPanahi/BioMistral-7B-GGUF".
