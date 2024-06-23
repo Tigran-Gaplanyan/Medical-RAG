@@ -1,4 +1,4 @@
-# Medical-RAG-using-Bio-Mistral-7B
+# Medical-RAG
 
 This project develops a sophisticated API for document ingestion and retrieval-augmented question answering, leveraging advanced natural language processing techniques. It consists of two main components:
 
